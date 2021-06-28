@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
+import ListContact from './components/ListContact'
+import NewContact from './components/NewContact'
+import { useRef } from 'react'
 function App() {
+  const instance = useRef(null);
+
+  function reloadData() {
+    instance.current.getData();
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='body'>
+      <h1 style={{ marginLeft: 20 }}>Agenda Multicapas</h1>
+      <NewContact reloadData={reloadData} />
+      <ListContact ref={instance} />
     </div>
   );
 }
